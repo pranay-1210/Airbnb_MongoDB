@@ -36,7 +36,7 @@ exports.postAddHome = (req, res, next) => {
   const { houseName, price, location, rating, photoUrl, description } = req.body;
   const newHome = new Home(houseName, price, location, rating, photoUrl, description );
 
-  newHome.save().then(([rows]) => {
+  newHome.save().then((rows) => {
       res.render("host/home-added", { pagetTitle: "Home Hosted" });
   });
 };

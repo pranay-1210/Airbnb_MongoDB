@@ -1,41 +1,28 @@
-
+const { getDb } = require("../util/database-util");
 const Favourite = require("./Favourite");
 
-const airbnbDb = require("../util/database-util");
-
-
-
-
-
 module.exports = class Home {
-    constructor(houseName, price, location, rating, photoUrl, description) {
-        this.houseName = houseName;
-        this.price = price;
-        this.location = location;
-        this.rating = rating;
-        this.photoUrl = photoUrl;
-        this.description = description;
-        
-    }
+  constructor(houseName, price, location, rating, photoUrl, description) {
+    this.houseName = houseName;
+    this.price = price;
+    this.location = location;
+    this.rating = rating;
+    this.photoUrl = photoUrl;
+    this.description = description;
+  }
 
-    save() {
-        return airbnbDb.execute(
-            "INSERT INTO homes (houseName, price, location, rating, photoUrl, description) VALUES (?, ?, ?, ?, ?, ?)", 
-            [this.houseName, this.price, this.location, this.rating, this.photoUrl, this.description]);
-        }
+  save() {
+    const db = getDb();
+    return db.collection("homes").insertOne(this).then(result => {
+        console.log(result);
+      });
+  }
 
-    static fetchAll(callback) {
-        return airbnbDb.execute("SELECT * FROM homes");
-    }
+  static fetchAll() {
 
-    static findById(homeId) {
-        return airbnbDb.execute("SELECT * FROM homes WHERE id = ?", [homeId]);
+  }
 
-    }
+  static findById(homeId) {}
 
-    static deleteById(homeId) {
-        return airbnbDb.execute("DELETE FROM homes WHERE id = ?", [homeId]);
-
-
-    }
-}
+  static deleteById(homeId) {}
+};
