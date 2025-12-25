@@ -1,5 +1,5 @@
 const { getDb } = require("../util/database-util");
-const Favourite = require("./Favourite");
+const { ObjectId } = require("mongodb");
 
 module.exports = class Home {
   constructor(houseName, price, location, rating, photoUrl, description) {
@@ -21,17 +21,28 @@ module.exports = class Home {
 static fetchAll() {
   const db = getDb();
   return db.collection("homes").find().toArray();
-  //   .then(registeredHomes => {
-  //     console.log(registeredHomes);
-  //     return registeredHomes;
-  //   })
-  //   .catch(error => {
-  //     console.log("Error while fetching homes", error);
-  //   });
+//     .then(registeredHomes => {
+//       console.log(registeredHomes);
+//       return registeredHomes;
+//     })
+//     .catch(error => {
+//       console.log("Error while fetching homes", error);
+//     });
+// }
 }
 
 
-  static findById(homeId) {}
+  static findById(homeId) {
+    const db = getDb();
+    return db.collection("homes").find({ _id: new ObjectId(String(homeId))}).next()
+    .then(home => {
+      console.log(home);
+      return home;
+    })
+    .catch(error => {
+      console.log("Error while doing findById ", error);
+    });
+  }
 
   static deleteById(homeId) {}
 };

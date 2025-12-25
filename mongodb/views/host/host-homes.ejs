@@ -23,10 +23,10 @@
                 
                
               </div>
-              <a href="/host/edit-home/<%= home.id %>?editing=true"
+              <a href="/host/edit-home/<%= home._id %>?editing=true"
                 class="bg-green-500 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200 w-full text-center block">Edit</a>
               </div>
-              <form action="/host/delete-home/<%= home.id %>" method="POST" class="mt-2">
+              <form action="/host/delete-home/<%= home._id %>" method="POST" class="mt-2">
                 <button class="bg-red-500 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200 w-full text-center block">Delete</button>
               </form>
 

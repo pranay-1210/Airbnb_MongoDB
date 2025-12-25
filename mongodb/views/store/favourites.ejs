@@ -22,11 +22,11 @@
               <div class="flex flex-col">
                 <!-- Details -->
                 <a
-                  href="/homes/<%= home.id %>"
+                  href="/homes/<%= home._id %>"
                   class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg text-center transition duration-200 mb-2">Details</a>
 
                 <!-- Delete -->
-                <form action="/favourites/delete/<%= home.id %>" method="POST">
+                <form action="/favourites/delete/<%= home._id %>" method="POST">
                   <button class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg transition duration-200">Delete</button>
                 </form>
               </div>
