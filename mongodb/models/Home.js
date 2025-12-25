@@ -18,9 +18,18 @@ module.exports = class Home {
       });
   }
 
-  static fetchAll() {
+static fetchAll() {
+  const db = getDb();
+  return db.collection("homes").find().toArray();
+  //   .then(registeredHomes => {
+  //     console.log(registeredHomes);
+  //     return registeredHomes;
+  //   })
+  //   .catch(error => {
+  //     console.log("Error while fetching homes", error);
+  //   });
+}
 
-  }
 
   static findById(homeId) {}
 
